@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VTO Recovery - Collections Suite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } } }
+    </script>
+    <link rel="stylesheet" href="app.css?v=20261024-admin-system-1">
+</head>
+<body class="h-full bg-slate-100 font-sans text-slate-800 antialiased overflow-hidden">
+    <div class="flex h-screen w-screen overflow-hidden">
+
+        <aside class="w-64 bg-white border-r border-slate-200 flex flex-col z-20 shadow-sm hidden md:flex">
+            <div class="p-6 border-b border-slate-100 flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-emerald-500/20">VTO</div>
+                <div>
+                    <h1 class="font-bold text-slate-900 tracking-tight leading-none">VTO Recovery</h1>
+                    <span class="text-xs text-slate-500 font-medium">Collections Suite</span>
+                </div>
+            </div>
+            <nav class="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto text-sm">
+                <a href="index.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors "><i class="fa-solid fa-chart-pie w-5 mr-3 text-slate-400"></i>Dashboard</a>
+<a href="accounts.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors "><i class="fa-solid fa-folder-open w-5 mr-3 text-slate-400"></i>Accounts</a>
+<a href="assigned_accounts.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors "><i class="fa-solid fa-user-check w-5 mr-3 text-slate-400"></i>Assigned accounts</a>
+<a href="call_log.html" class="flex items-center px-4 py-3 rounded-xl font-semibold text-emerald-700 bg-emerald-50/80 shadow-sm"><i class="fa-solid fa-phone-volume w-5 mr-3 text-emerald-600"></i>Call Log</a>
+<a href="arrangements.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors "><i class="fa-solid fa-calendar-days w-5 mr-3 text-slate-400"></i>Arrangements</a>
+<a href="follow_ups.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors "><i class="fa-solid fa-clock-rotate-left w-5 mr-3 text-slate-400"></i>Follow-ups</a>
+<a href="clients.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors "><i class="fa-solid fa-users w-5 mr-3 text-slate-400"></i>Clients</a>
+<a href="collectors.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors"><i class="fa-solid fa-user-group w-5 mr-3 text-slate-400"></i>Collectors</a>
+<a href="reports.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors"><i class="fa-solid fa-chart-column w-5 mr-3 text-slate-400"></i>Reports</a>
+<a href="notifications.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors "><i class="fa-solid fa-bell w-5 mr-3 text-slate-400"></i>Notifications</a>
+
+            </nav>
+            <div class="p-4 border-t border-slate-100 flex items-center space-x-3">
+                <div class="w-9 h-9 rounded-full bg-slate-900 text-white font-semibold flex items-center justify-center text-sm shadow">V</div>
+                <div><p class="text-sm font-semibold text-slate-800">Collector One</p><p class="text-xs text-slate-500">Active Session</p></div>
+            </div>
+        </aside>
+
+        <main class="flex-1 flex flex-col h-full overflow-hidden">
+
+        <header class="bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between z-10 shadow-sm">
+            <div class="flex items-center space-x-4 flex-1 max-w-lg">
+                <div class="relative w-full">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" placeholder="Search accounts..." class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a class="notification-trigger" href="notifications.html" aria-label="Open notifications" title="Notifications"><i class="fa-regular fa-bell"></i><span class="notification-dot"></span></a>
+                <div class="w-10 h-10 rounded-xl bg-slate-900 text-white font-bold flex items-center justify-center text-sm shadow">V</div>
+            </div>
+        </header>
+
+            <div class="call-entry-page flex-1 overflow-y-auto p-6 lg:p-8">
+                <div class="call-entry-heading"><h2>Call logging</h2><p>Log calls, promises and follow-ups for accounts imported from the Accounts page.</p><label class="mt-4 block max-w-xl text-sm font-medium text-slate-600">Select account<select id="callAccountPicker" class="mt-2 w-full rounded-xl border border-slate-200 bg-white px-4 py-3"></select></label></div>
+                <div class="call-entry-layout">
+                    <section class="call-entry-panel">
+                        <div class="debtor-summary"><span class="debtor-phone-icon"><i class="fa-solid fa-phone-volume"></i></span><div class="debtor-details"><small id="entryAccount">ACC-20240</small><h3 id="entryName">Bongani Ndlovu</h3><a id="entryPhone" href="tel:+27811002000">+27 81 100 2000</a></div><div class="debtor-balance"><small>Outstanding</small><strong id="entryBalance">R 69 192</strong><span class="account-status new">New</span></div></div>
+                        <form id="callEntryForm">
+                            <input type="hidden" name="account" id="formAccount" value="ACC-20240"><input type="hidden" name="client" id="formClient" value="Bongani Ndlovu"><input type="hidden" name="phone" id="formPhone" value="+27 81 100 2000"><input type="hidden" name="balance" id="formBalance" value="69192">
+                            <div class="call-form-grid"><label>Call date<input name="date" type="date" required></label><label>Call time<input name="time" type="time" required></label><label>Outcome<select name="outcome"><option>Call Back</option><option>Connected</option><option>No Answer</option><option>Promise to Pay</option></select></label><label>Follow-up date<input name="follow" type="date"></label><label class="call-notes-field">Notes<textarea name="notes" rows="4" placeholder="Summary of the conversation, next steps..."></textarea></label></div>
+                            <div class="promise-box"><label class="promise-toggle"><input name="promise" id="promiseToggle" type="checkbox"><span class="toggle-track"></span><span><b>Promise to pay</b><small>Record a promised payment</small></span></label><label class="promised-amount">Promised amount (ZAR)<input name="amount" id="promisedAmount" type="number" min="0" step="0.01" value="0.00"></label></div>
+                            <div class="call-form-footer"><span class="save-feedback" id="saveFeedback" aria-live="polite"></span><button type="reset" class="call-cancel">Cancel</button><button type="submit" class="call-save"><i class="fa-regular fa-floppy-disk"></i>Save call log</button></div>
+                        </form>
+                    </section>
+
+                </div>
+            </div>
+        </main>
+    </div>
+<script src="app-data.js?v=20261029-review-1"></script>
+<script>
+const D=window.VTOData,safe=D.safe,accounts=D.accounts(),picker=document.getElementById('callAccountPicker'),queryAccount=new URLSearchParams(location.search).get('account');
+const localDate=()=>{const now=new Date();return new Date(now.getTime()-now.getTimezoneOffset()*60000).toISOString().slice(0,10)};
+picker.innerHTML=accounts.map(a=>`<option value="${safe(a.id)}">${safe(a.id)} · ${safe(a.name)}</option>`).join('');
+let selected=accounts.find(a=>a.id===queryAccount)||accounts[0]||null;
+if(selected)picker.value=selected.id;
+function showAccount(){selected=accounts.find(a=>a.id===picker.value)||null;if(!selected){document.getElementById('entryAccount').textContent='No account selected';document.getElementById('entryName').textContent='Import accounts to begin';document.getElementById('entryPhone').textContent='';document.getElementById('entryBalance').textContent='—';document.querySelectorAll('#callEntryForm input,#callEntryForm select,#callEntryForm textarea,#callEntryForm button[type=submit]').forEach(el=>el.disabled=true);return;}
+document.querySelectorAll('#callEntryForm input,#callEntryForm select,#callEntryForm textarea,#callEntryForm button[type=submit]').forEach(el=>el.disabled=false);
+document.getElementById('entryAccount').textContent=selected.id;document.getElementById('entryName').textContent=selected.name;document.getElementById('entryPhone').textContent=selected.phone||'No phone listed';document.getElementById('entryPhone').href=selected.phone?'tel:'+selected.phone.replace(/\s/g,''):'#';document.getElementById('entryBalance').textContent=D.money(selected.balance);document.getElementById('formAccount').value=selected.id;document.getElementById('formClient').value=selected.name;document.getElementById('formPhone').value=selected.phone;document.getElementById('formBalance').value=selected.balance||0;}
+picker.addEventListener('change',showAccount);showAccount();
+const today=new Date();document.querySelector('[name="date"]').value=localDate();document.querySelector('[name="time"]').value=today.toTimeString().slice(0,5);
+function renderRecent(){const calls=D.calls();document.getElementById('recentCalls').innerHTML=calls.slice(0,8).map(c=>`<article class="recent-call-card"><div class="recent-call-top"><strong>${safe(c.client||c.account)}</strong><span class="recent-status ${String(c.outcome).toLowerCase().replaceAll(' ','-')}">${safe(c.outcome)}</span></div><p>${safe(c.notes||'Call logged.')}</p><div><span>${safe(c.date||'')}${c.time?' · '+safe(c.time):''}</span>${c.amount?`<b>${safe(D.money(c.amount))}</b>`:''}</div></article>`).join('')||'<p class="py-4 text-sm text-slate-500">No calls logged yet. Choose an account and add the first call.</p>';}
+document.getElementById('promiseToggle').addEventListener('change',e=>{document.getElementById('promisedAmount').disabled=!e.target.checked;if(e.target.checked)document.getElementById('promisedAmount').focus();});document.getElementById('promisedAmount').disabled=true;
+document.querySelector('[name="outcome"]').addEventListener('change',e=>{if(e.target.value==='Promise to Pay'){document.getElementById('promiseToggle').checked=true;document.getElementById('promisedAmount').disabled=false;}});
+document.getElementById('callEntryForm').addEventListener('submit',e=>{e.preventDefault();if(!selected)return;const f=new FormData(e.currentTarget),call={id:String(Date.now()),account:selected.id,client:selected.name,phone:selected.phone,balance:Number(selected.balance)||0,date:f.get('date'),time:f.get('time'),outcome:f.get('outcome'),follow:f.get('follow'),notes:f.get('notes'),promise:document.getElementById('promiseToggle').checked,amount:Number(f.get('amount')||0),collector:selected.assignedTo||''};const logs=D.calls();logs.unshift(call);D.saveCalls(logs);
+if(call.promise&&call.amount>0){const plans=D.arrangements(),existing=plans.findIndex(plan=>plan.account===selected.id&&plan.status==='Active'),plan={id:'PA-'+Date.now().toString().slice(-6),client:selected.name,account:selected.id,amount:call.amount,frequency:'Monthly',next:call.follow||call.date,paid:0,status:'Active',proof:false,collector:selected.assignedTo||'',source:'call-log'};if(existing>=0)plans[existing]=plan;else plans.unshift(plan);D.saveArrangements(plans);}
+renderRecent();document.getElementById('saveFeedback').textContent=call.promise?'Call saved and payment arrangement created.':'Call saved.';setTimeout(()=>location.href=call.follow?'follow_ups.html':'call_log.html?account='+encodeURIComponent(selected.id),700);});
+document.querySelector('.call-cancel').addEventListener('click',()=>location.href='assigned_accounts.html');renderRecent();
+if(!accounts.length)document.getElementById('saveFeedback').textContent='Import the Excel workbook on the Accounts page to start logging calls.';
+</script>
+</body>
+</html>

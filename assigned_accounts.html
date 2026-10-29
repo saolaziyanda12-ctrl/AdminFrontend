@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VTO Recovery - Collections Suite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } } }
+    </script>
+    <link rel="stylesheet" href="app.css?v=20261024-admin-system-1">
+</head>
+<body class="h-full bg-slate-100 font-sans text-slate-800 antialiased overflow-hidden">
+    <div class="flex h-screen w-screen overflow-hidden">
+
+        <aside class="w-64 bg-white border-r border-slate-200 flex flex-col z-20 shadow-sm hidden md:flex">
+            <div class="p-6 border-b border-slate-100 flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-emerald-500/20">VTO</div>
+                <div>
+                    <h1 class="font-bold text-slate-900 tracking-tight leading-none">VTO Recovery</h1>
+                    <span class="text-xs text-slate-500 font-medium">Collections Suite</span>
+                </div>
+            </div>
+            <nav class="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto text-sm">
+                <a href="index.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors"><i class="fa-solid fa-chart-pie w-5 mr-3 text-slate-400"></i>Dashboard</a>
+                <a href="accounts.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors"><i class="fa-solid fa-folder-open w-5 mr-3 text-slate-400"></i>Accounts</a>
+                <a href="assigned_accounts.html" class="flex items-center px-4 py-3 rounded-xl font-semibold text-emerald-700 bg-emerald-50/80 shadow-sm"><i class="fa-solid fa-user-check w-5 mr-3 text-emerald-600"></i>Assigned accounts</a>
+                <a href="call_log.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors"><i class="fa-solid fa-phone-volume w-5 mr-3 text-slate-400"></i>Call Log</a>
+                <a href="arrangements.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors"><i class="fa-solid fa-calendar-days w-5 mr-3 text-slate-400"></i>Arrangements</a>
+                <a href="follow_ups.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors"><i class="fa-solid fa-clock-rotate-left w-5 mr-3 text-slate-400"></i>Follow-ups</a>
+                <a href="clients.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors"><i class="fa-solid fa-users w-5 mr-3 text-slate-400"></i>Clients</a>
+                <a href="collectors.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors"><i class="fa-solid fa-user-group w-5 mr-3 text-slate-400"></i>Collectors</a>
+                <a href="reports.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors"><i class="fa-solid fa-chart-column w-5 mr-3 text-slate-400"></i>Reports</a>
+                                <a href="notifications.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors"><i class="fa-solid fa-bell w-5 mr-3 text-slate-400"></i>Notifications</a>
+            </nav>
+            <div class="p-4 border-t border-slate-100 flex items-center space-x-3">
+                <div class="w-9 h-9 rounded-full bg-slate-900 text-white font-semibold flex items-center justify-center text-sm shadow">V</div>
+                <div><p class="text-sm font-semibold text-slate-800">Collector One</p><p class="text-xs text-slate-500">Active Session</p></div>
+            </div>
+        </aside>
+    
+        <main class="flex-1 flex flex-col h-full overflow-hidden">
+            
+        <header class="bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between z-10 shadow-sm">
+            <div class="flex items-center space-x-4 flex-1 max-w-lg">
+                <div class="relative w-full">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="search" placeholder="Search accounts..." class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a class="notification-trigger" href="notifications.html" aria-label="Open notifications" title="Notifications"><i class="fa-regular fa-bell"></i><span class="notification-dot"></span></a>
+                <div class="w-10 h-10 rounded-xl bg-slate-900 text-white font-bold flex items-center justify-center text-sm shadow">V</div>
+            </div>
+        </header>
+    
+            <div class="assigned-workspace flex-1 overflow-y-auto p-6 lg:p-8">
+                <div class="assigned-title-row"><div><h2>Assigned accounts</h2><p>Review the imported portfolio and track which accounts are assigned to each collector.</p></div><div class="assigned-admin-filters"><select id="collectorFilter" aria-label="Filter by collector"><option value="">All accounts</option><option value="__unassigned">Unassigned</option></select><label class="assigned-search"><i class="fa-solid fa-magnifying-glass"></i><input id="assignedSearch" type="search" placeholder="Search accounts"></label></div></div>
+                <div class="assigned-toolbar">
+                <div class="assigned-filters">
+                        <label>Outcome<select id="outcomeFilter"><option value="">All outcomes</option><option>New</option><option>In Progress</option><option>Call placed</option><option>Call Back</option><option>Connected</option><option>No Answer</option><option>Promise to Pay</option><option>Arrangement</option><option>Legal</option><option>Closed</option></select></label>
+                        <label>From<input id="dateFromFilter" type="date" aria-label="Filter from date"></label>
+                        <label>To<input id="dateToFilter" type="date" aria-label="Filter to date"></label>
+                    </div>
+                    <div class="assigned-view-switch" role="group" aria-label="Choose account view"><button type="button" class="selected" data-view="cards" aria-pressed="true"><i class="fa-solid fa-grip"></i>Cards</button><button type="button" data-view="list" aria-pressed="false"><i class="fa-solid fa-list"></i>List</button></div>
+                </div>
+                <p class="assigned-session-feedback" id="assignedSessionFeedback" aria-live="polite"></p>
+                <div class="assigned-cards" id="assignedCards"></div>
+                <div class="assigned-empty" id="assignedEmpty" hidden>No assigned accounts match your search.</div>
+                <div class="assigned-pagination" id="assignedPagination">
+                    <span id="assignedPageSummary">Showing 0 accounts</span>
+                    <label>Rows per page<select id="assignedPageSize"><option value="10">10</option><option value="25">25</option><option value="50">50</option></select></label>
+                    <div><button id="assignedPrev" type="button" aria-label="Previous page"><i class="fa-solid fa-chevron-left"></i></button><span id="assignedPageNumber">1 / 1</span><button id="assignedNext" type="button" aria-label="Next page"><i class="fa-solid fa-chevron-right"></i></button></div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <dialog class="quick-call-dialog" id="quickCallDialog">
+        <form id="quickCallForm">
+            <div class="quick-call-dialog-heading"><div><span>Log a call</span><h2 id="quickCallClient">Client</h2><small id="quickCallAccount">Account ID</small></div><button type="button" id="closeQuickCall" aria-label="Close call form"><i class="fa-solid fa-xmark"></i></button></div>
+            <input type="hidden" name="account">
+            <div class="quick-call-fields">
+                <label>Call date<input name="date" type="date" required></label>
+                <label>Call time<input name="time" type="time" required></label>
+                <label>Outcome<select name="outcome" required><option>Call Back</option><option>Connected</option><option>No Answer</option><option>Promise to Pay</option></select></label>
+                <label>Follow-up date<input name="follow" type="date"></label>
+                <label class="quick-call-notes">Notes<textarea name="notes" rows="3" placeholder="Add a short call summary"></textarea></label>
+            </div>
+            <div class="quick-call-actions"><button type="button" class="quick-call-cancel" id="cancelQuickCall">Cancel</button><button type="submit" class="quick-call-save"><i class="fa-regular fa-floppy-disk"></i>Save call</button></div>
+        </form>
+    </dialog>
+<script src="app-data.js?v=20261029-review-1"></script>
+<script>
+const D=window.VTOData, safe=D.safe, assignedAccounts=D.accounts().map(a=>({...a,balance:D.money(a.balance),status:a.status||'New',last:''}));
+const callSessionKey=D.keys.calls;
+let assignedPage=1,assignedPageSize=10,assignedView='cards',callAccount=null;
+const assignedRoot=document.getElementById('assignedCards'),quickCallDialog=document.getElementById('quickCallDialog'),quickCallForm=document.getElementById('quickCallForm'),collectorFilter=document.getElementById('collectorFilter');
+D.collectors().forEach(name=>collectorFilter.insertAdjacentHTML('beforeend',`<option value="${safe(name)}">${safe(name)}</option>`));
+const latestCall=a=>D.calls().filter(call=>call.account===a.id).sort((x,y)=>`${y.date||''} ${y.time||''}`.localeCompare(`${x.date||''} ${x.time||''}`))[0]||null;
+const accountOutcome=a=>latestCall(a)?.outcome||a.status.replace('Promise To Pay','Promise to Pay');
+function visibleAssigned(){const query=document.getElementById('assignedSearch').value.trim().toLowerCase(),outcome=document.getElementById('outcomeFilter').value,from=document.getElementById('dateFromFilter').value,to=document.getElementById('dateToFilter').value,collector=collectorFilter.value;return assignedAccounts.filter(a=>{const last=latestCall(a),date=last?.date||'',text=[a.id,a.name,a.phone,a.balance,a.status,a.days,last?.outcome,last?.notes,a.assignedTo].join(' ').toLowerCase();return (!collector||(collector==='__unassigned'?!a.assignedTo:a.assignedTo===collector))&&(!query||text.includes(query))&&(!outcome||accountOutcome(a).toLowerCase()===outcome.toLowerCase())&&(!from||date>=from)&&(!to||date<=to);});}
+function callButton(a){return `<a class="assigned-call" href="tel:${safe((a.phone||'').replace(/\s+/g,''))}" data-quick-call="${safe(a.id)}"><i class="fa-solid fa-phone"></i>Quick call</a><button class="assigned-call-log" type="button" data-log-call="${safe(a.id)}"><i class="fa-regular fa-pen-to-square"></i>Log</button>`;}
+function detailsLink(a){return `<a class="assigned-details" href="call_log.html?account=${encodeURIComponent(a.id)}"><i class="fa-regular fa-eye"></i>Details</a>`;}
+function renderAssigned(){const filtered=visibleAssigned(),pages=Math.max(1,Math.ceil(filtered.length/assignedPageSize));assignedPage=Math.min(assignedPage,pages);const start=(assignedPage-1)*assignedPageSize,pageRows=filtered.slice(start,start+assignedPageSize);document.getElementById('assignedEmpty').hidden=filtered.length>0;document.getElementById('assignedPagination').hidden=filtered.length===0;document.getElementById('assignedPageSummary').textContent=filtered.length?`Showing ${start+1}–${Math.min(start+assignedPageSize,filtered.length)} of ${filtered.length} accounts`:'Showing 0 accounts';document.getElementById('assignedPageNumber').textContent=`${assignedPage} / ${pages}`;document.getElementById('assignedPrev').disabled=assignedPage<=1;document.getElementById('assignedNext').disabled=assignedPage>=pages;assignedRoot.classList.toggle('is-list',assignedView==='list');
+if(assignedView==='cards'){assignedRoot.innerHTML=pageRows.map(a=>{const call=latestCall(a),outcome=accountOutcome(a);return `<article class="assigned-card"><div class="assigned-card-head"><div><span class="assigned-id">${safe(a.id)}</span><h3>${safe(a.name)}</h3><p>${safe(a.phone||'No phone listed')}</p><small>Assigned to ${safe(a.assignedTo)}</small></div></div><div class="assigned-metrics"><div><small>OUTSTANDING</small><strong>${safe(a.balance)}</strong></div><div><small>DAYS OVERDUE</small><strong>${safe(a.days)}</strong></div></div><div class="assigned-card-meta"><span class="account-status ${outcome.toLowerCase().replaceAll(' ','-')}">${safe(outcome)}</span><span>${call?`Call: ${safe(call.date||'')}`:'No calls logged'}</span></div>${call?`<p class="assigned-call-note">${safe(call.outcome)}${call.notes?` · ${safe(call.notes)}`:''}</p>`:''}<div class="assigned-card-actions">${callButton(a)}${detailsLink(a)}</div></article>`;}).join('');}
+else{assignedRoot.innerHTML=`<div class="assigned-list-wrap"><table class="assigned-list"><thead><tr><th>Account</th><th>Client</th><th>Collector</th><th>Outcome</th><th>Outstanding</th><th>Days overdue</th><th>Last activity</th><th>Actions</th></tr></thead><tbody>${pageRows.map(a=>{const call=latestCall(a);return `<tr><td class="assigned-id">${safe(a.id)}</td><td><strong>${safe(a.name)}</strong><small>${safe(a.phone||'')}</small></td><td>${safe(a.assignedTo)}</td><td><span class="account-status ${accountOutcome(a).toLowerCase().replaceAll(' ','-')}">${safe(accountOutcome(a))}</span></td><td>${safe(a.balance)}</td><td>${safe(a.days)}</td><td>${safe(call?.date||'—')}</td><td><div class="assigned-list-actions">${callButton(a)}${detailsLink(a)}</div></td></tr>`;}).join('')}</tbody></table></div>`;}}
+function resetAndRender(){assignedPage=1;renderAssigned();}
+document.getElementById('assignedSearch').addEventListener('input',resetAndRender);collectorFilter.addEventListener('change',resetAndRender);
+['outcomeFilter','dateFromFilter','dateToFilter'].forEach(id=>document.getElementById(id).addEventListener('change',resetAndRender));
+document.getElementById('assignedPageSize').addEventListener('change',e=>{assignedPageSize=Number(e.target.value)||10;resetAndRender();});
+document.getElementById('assignedPrev').addEventListener('click',()=>{if(assignedPage>1){assignedPage--;renderAssigned();}});document.getElementById('assignedNext').addEventListener('click',()=>{assignedPage++;renderAssigned();});
+document.querySelectorAll('.assigned-view-switch button').forEach(button=>button.addEventListener('click',()=>{assignedView=button.dataset.view;document.querySelectorAll('.assigned-view-switch button').forEach(item=>{const active=item===button;item.classList.toggle('selected',active);item.setAttribute('aria-pressed',String(active));});renderAssigned();}));
+function prepareCallLog(accountId){callAccount=assignedAccounts.find(account=>account.id===accountId);if(!callAccount)return;document.getElementById('quickCallClient').textContent=callAccount.name;document.getElementById('quickCallAccount').textContent=callAccount.id;quickCallForm.elements.account.value=callAccount.id;const now=new Date(),localDate=new Date(now.getTime()-now.getTimezoneOffset()*60000).toISOString().slice(0,10);quickCallForm.elements.date.value=localDate;quickCallForm.elements.time.value=now.toTimeString().slice(0,5);quickCallDialog.showModal();}
+assignedRoot.addEventListener('click',event=>{const logButton=event.target.closest('[data-log-call]');if(logButton){prepareCallLog(logButton.dataset.logCall);return;}const callLink=event.target.closest('[data-quick-call]');if(!callLink)return;const account=assignedAccounts.find(item=>item.id===callLink.dataset.quickCall);if(!account)return;const now=new Date(),date=new Date(now.getTime()-now.getTimezoneOffset()*60000).toISOString().slice(0,10),logs=D.calls();logs.unshift({id:`${Date.now()}`,account:account.id,client:account.name,phone:account.phone,date,time:now.toTimeString().slice(0,5),outcome:'Call placed',notes:'Call launched from assigned accounts.',collector:account.assignedTo});D.saveCalls(logs);document.getElementById('assignedSessionFeedback').textContent=`Opening your phone app to call ${account.name}.`;setTimeout(renderAssigned,250);});
+function closeQuickCall(){quickCallDialog.close();}document.getElementById('closeQuickCall').addEventListener('click',closeQuickCall);document.getElementById('cancelQuickCall').addEventListener('click',closeQuickCall);
+quickCallForm.addEventListener('submit',event=>{event.preventDefault();if(!callAccount)return;const data=new FormData(quickCallForm),logs=D.calls();logs.unshift({id:`${Date.now()}`,account:callAccount.id,client:callAccount.name,phone:callAccount.phone,date:data.get('date'),time:data.get('time'),outcome:data.get('outcome'),follow:data.get('follow'),notes:data.get('notes'),collector:callAccount.assignedTo});D.saveCalls(logs);document.getElementById('assignedSessionFeedback').textContent=`Call outcome saved for ${callAccount.name}.`;quickCallForm.reset();closeQuickCall();resetAndRender();});
+if(!assignedAccounts.length)document.getElementById('assignedEmpty').textContent='Import accounts on the Accounts page to load the portfolio.';
+renderAssigned();
+</script>
+</html>

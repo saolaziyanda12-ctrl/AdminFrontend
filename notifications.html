@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VTO Recovery - Collections Suite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } } }
+    </script>
+    <link rel="stylesheet" href="app.css?v=20261024-admin-system-1">
+</head>
+<body class="h-full bg-slate-100 font-sans text-slate-800 antialiased overflow-hidden">
+    <div class="flex h-screen w-screen overflow-hidden">
+
+        <aside class="w-64 bg-white border-r border-slate-200 flex flex-col z-20 shadow-sm hidden md:flex">
+            <div class="p-6 border-b border-slate-100 flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-emerald-500/20">VTO</div>
+                <div>
+                    <h1 class="font-bold text-slate-900 tracking-tight leading-none">VTO Recovery</h1>
+                    <span class="text-xs text-slate-500 font-medium">Collections Suite</span>
+                </div>
+            </div>
+            <nav class="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto text-sm">
+                <a href="index.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors "><i class="fa-solid fa-chart-pie w-5 mr-3 text-slate-400"></i>Dashboard</a>
+<a href="accounts.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors "><i class="fa-solid fa-folder-open w-5 mr-3 text-slate-400"></i>Accounts</a>
+<a href="assigned_accounts.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors "><i class="fa-solid fa-user-check w-5 mr-3 text-slate-400"></i>Assigned accounts</a>
+<a href="call_log.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors "><i class="fa-solid fa-phone-volume w-5 mr-3 text-slate-400"></i>Call Log</a>
+<a href="arrangements.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors "><i class="fa-solid fa-calendar-days w-5 mr-3 text-slate-400"></i>Arrangements</a>
+<a href="follow_ups.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors "><i class="fa-solid fa-clock-rotate-left w-5 mr-3 text-slate-400"></i>Follow-ups</a>
+<a href="clients.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors "><i class="fa-solid fa-users w-5 mr-3 text-slate-400"></i>Clients</a>
+<a href="collectors.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors"><i class="fa-solid fa-user-group w-5 mr-3 text-slate-400"></i>Collectors</a>
+<a href="reports.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors"><i class="fa-solid fa-chart-column w-5 mr-3 text-slate-400"></i>Reports</a>
+<a href="notifications.html" class="flex items-center px-4 py-3 rounded-xl font-semibold text-emerald-700 bg-emerald-50/80 shadow-sm"><i class="fa-solid fa-bell w-5 mr-3 text-emerald-600"></i>Notifications</a>
+
+            </nav>
+            <div class="p-4 border-t border-slate-100 flex items-center space-x-3">
+                <div class="w-9 h-9 rounded-full bg-slate-900 text-white font-semibold flex items-center justify-center text-sm shadow">V</div>
+                <div><p class="text-sm font-semibold text-slate-800">Collector One</p><p class="text-xs text-slate-500">Active Session</p></div>
+            </div>
+        </aside>
+    
+        <main class="flex-1 flex flex-col h-full overflow-hidden">
+            
+        <header class="bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between z-10 shadow-sm">
+            <div class="flex items-center space-x-4 flex-1 max-w-lg">
+                <div class="relative w-full">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" placeholder="Search accounts..." class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a class="notification-trigger" href="notifications.html" aria-label="Open notifications" title="Notifications"><i class="fa-regular fa-bell"></i><span class="notification-dot"></span></a>
+                <div class="w-10 h-10 rounded-xl bg-slate-900 text-white font-bold flex items-center justify-center text-sm shadow">V</div>
+            </div>
+        </header>
+    
+            <div class="flex-1 overflow-y-auto p-6 lg:p-8 space-y-6">
+                <div><h2 class="text-2xl font-bold text-slate-900 tracking-tight">System Notifications</h2><p class="text-sm text-slate-500 mt-0.5">Recent automated alerts and system activities.</p></div>
+                <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 space-y-4">
+                    <div class="flex items-start space-x-3 pb-3 border-b border-slate-100"><span class="w-2 h-2 mt-1.5 rounded-full bg-amber-500"></span><div><p class="font-medium text-slate-800 text-sm">Naledi van Wyk logged a call <span class="text-blue-600 font-semibold">ACC-20256</span></p><span class="text-xs text-slate-400">2 min ago</span></div></div>
+                    <div class="flex items-start space-x-3 pb-3 border-b border-slate-100"><span class="w-2 h-2 mt-1.5 rounded-full bg-emerald-500"></span><div><p class="font-medium text-slate-800 text-sm">Thandiwe Mokoena created arrangement <span class="text-blue-600 font-semibold">PA-512</span></p><span class="text-xs text-slate-400">18 min ago</span></div></div>
+                    <div class="flex items-start space-x-3 pb-3"><span class="w-2 h-2 mt-1.5 rounded-full bg-blue-500"></span><div><p class="font-medium text-slate-800 text-sm">System imported 24 accounts batch-07-08</p><span class="text-xs text-slate-400">1 hr ago</span></div></div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VTO Recovery - Collections Suite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>
+        tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } } }
+    </script>
+    <link rel="stylesheet" href="app.css?v=20261024-admin-system-1">
+    <style>
+        .dashboard-layout > .collector-leaderboard { grid-column: 1; min-width: 0; overflow: hidden; padding: 0 18px 4px; border: 1px solid #dfe7ed; border-radius: 16px; background: linear-gradient(180deg,#fff,#fbfdfe); box-shadow: 0 4px 14px #213d5510; }
+        .collector-leaderboard .collector-leaderboard-heading { min-height: 68px; margin: 0 -18px; padding: 12px 18px; border-bottom: 1px solid #eaf0f4; background: linear-gradient(110deg,#f6faf8,#f7f9fc); }
+        .collector-leaderboard .collector-leaderboard-heading h3 { color: #193b56; font-size: 15px; font-weight: 700; letter-spacing: -.01em; }
+        .collector-leaderboard .collector-leaderboard-heading h3 i { width: 28px; height: 28px; margin-right: 7px; display: inline-grid; place-items: center; border-radius: 9px; color: #b47b19; background: #fff1d5; font-size: 13px; }
+        .collector-leaderboard .collector-leaderboard-heading p { margin: 3px 0 0 36px; color: #7b8995; font-size: 11px; }
+        .collector-leaderboard .collector-leaderboard-heading a { padding: 8px 10px; border-radius: 9px; color: #246b4e; background: #eaf5ef; font-size: 11px; text-decoration: none; transition: background .15s ease,color .15s ease; }
+        .collector-leaderboard .collector-leaderboard-heading a:hover { color: #155638; background: #dcefe4; }
+        .collector-leaderboard .leaderboard-row { min-height: 66px; grid-template-columns: 28px 38px minmax(0,1fr) auto; gap: 11px; border-bottom: 1px solid #edf1f4; transition: background .15s ease; }
+        .collector-leaderboard .leaderboard-row:hover { background: #f8fbf9; }
+        .collector-leaderboard .leaderboard-rank { width: 25px; height: 25px; display: grid; place-items: center; border-radius: 8px; color: #687887; background: #f0f3f6; font-size: 11px; }
+        .collector-leaderboard .leaderboard-rank.first { color: #9a6711; background: #fff0ca; }
+        .collector-leaderboard .leaderboard-rank.second { color: #5d6c7a; background: #e9eef2; }
+        .collector-leaderboard .leaderboard-rank.third { color: #986044; background: #f7e9df; }
+        .collector-leaderboard .leaderboard-avatar { width: 36px; height: 36px; border: 1px solid #dcebe2; color: #28694c; background: #edf6f0; font-size: 10px; }
+        .collector-leaderboard .leaderboard-person strong { color: #273b4b; font-size: 12px; font-weight: 650; }
+        .collector-leaderboard .leaderboard-person small { margin-top: 4px; color: #85919b; font-size: 10px; }
+        .collector-leaderboard .leaderboard-total { color: #236b4b; font-size: 11px; font-weight: 700; }
+        .collector-leaderboard .leaderboard-empty { margin: 0; padding: 22px 4px; color: #738391; font-size: 12px; line-height: 1.5; }
+        @media (max-width: 650px) { .collector-leaderboard .leaderboard-row { grid-template-columns: 25px 34px minmax(0,1fr) auto; gap: 8px; } .collector-leaderboard .leaderboard-total { font-size: 10px; } }
+        .dashboard-page { background: #f6f8fa !important; }
+        .dashboard-layout { grid-template-columns: minmax(0,1fr) 330px !important; gap: 18px !important; align-items: start !important; }
+        .dashboard-kpis { grid-column: 1; grid-row: 1; grid-template-columns: repeat(3,minmax(0,1fr)) !important; gap: 11px !important; }
+        .attendance-chart { grid-column: 1; grid-row: 2; min-width: 0; padding: 18px 20px; border: 1px solid #dfe7ed; border-radius: 16px; background: #fff; box-shadow: 0 2px 7px #172b3b0b; }
+        .attendance-chart-heading { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; margin-bottom:8px; }
+        .attendance-chart-heading h3 { color:#1d3448; font-size:16px; font-weight:700; }
+        .attendance-chart-heading p { margin-top:3px; color:#7b8792; font-size:11px; }
+        .attendance-chart-heading a { color:#24714f; font-size:11px; font-weight:650; text-decoration:none; white-space:nowrap; }
+        .attendance-chart svg { display:block; width:100%; height:auto; min-height:180px; }
+        .collector-leaderboard { grid-column: 1; grid-row: 3; }
+        .calendar-panel { grid-column: 1; grid-row: 4; }
+        .dashboard-sidecards { grid-column: 2; grid-row: 1 / span 4; display: flex; flex-direction: column; gap: 11px; }
+        @media (max-width: 1100px) {
+            .dashboard-layout { grid-template-columns: minmax(0,1fr) !important; }
+            .dashboard-kpis, .attendance-chart, .collector-leaderboard, .calendar-panel, .dashboard-sidecards { grid-column: 1; grid-row: auto; }
+            .dashboard-sidecards { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); }
+        }
+        @media (max-width: 650px) {
+            .dashboard-welcome { align-items: flex-start; flex-direction: column; }
+            .dashboard-kpis { grid-template-columns: repeat(2,minmax(0,1fr)) !important; }
+            .dashboard-sidecards { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body class="h-full bg-slate-100 font-sans text-slate-800 antialiased overflow-hidden">
+    <div class="flex h-screen w-screen overflow-hidden">
+
+        <aside class="w-64 bg-white border-r border-slate-200 flex flex-col z-20 shadow-sm hidden md:flex">
+            <div class="p-6 border-b border-slate-100 flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-emerald-500/20">VTO</div>
+                <div>
+                    <h1 class="font-bold text-slate-900 tracking-tight leading-none">VTO Recovery</h1>
+                    <span class="text-xs text-slate-500 font-medium">Collections Suite</span>
+                </div>
+            </div>
+            <nav class="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto text-sm">
+                <a href="index.html" class="flex items-center px-4 py-3 rounded-xl font-semibold text-emerald-700 bg-emerald-50/80 shadow-sm"><i class="fa-solid fa-chart-pie w-5 mr-3 text-emerald-600"></i>Dashboard</a>
+<a href="accounts.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors "><i class="fa-solid fa-folder-open w-5 mr-3 text-slate-400"></i>Accounts</a>
+<a href="assigned_accounts.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors "><i class="fa-solid fa-user-check w-5 mr-3 text-slate-400"></i>Assigned accounts</a>
+<a href="call_log.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors "><i class="fa-solid fa-phone-volume w-5 mr-3 text-slate-400"></i>Call Log</a>
+<a href="arrangements.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors "><i class="fa-solid fa-calendar-days w-5 mr-3 text-slate-400"></i>Arrangements</a>
+<a href="follow_ups.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors "><i class="fa-solid fa-clock-rotate-left w-5 mr-3 text-slate-400"></i>Follow-ups</a>
+<a href="clients.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors "><i class="fa-solid fa-users w-5 mr-3 text-slate-400"></i>Clients</a>
+<a href="collectors.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors"><i class="fa-solid fa-user-group w-5 mr-3 text-slate-400"></i>Collectors</a>
+<a href="reports.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors"><i class="fa-solid fa-chart-column w-5 mr-3 text-slate-400"></i>Reports</a>
+<a href="notifications.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors "><i class="fa-solid fa-bell w-5 mr-3 text-slate-400"></i>Notifications<span class="sidebar-notification-count">3</span></a>
+
+            </nav>
+            <div class="sidebar-recovery-card"><span><i class="fa-solid fa-bullseye"></i></span><strong>Small steps.<br>Big recoveries.</strong><p>Every call, every follow-up, makes a difference.</p><i class="recovery-wave"></i></div>
+            <div class="p-4 border-t border-slate-100 flex items-center space-x-3">
+                <div class="w-9 h-9 rounded-full bg-slate-900 text-white font-semibold flex items-center justify-center text-sm shadow">V</div>
+                <div><p class="text-sm font-semibold text-slate-800">Vura</p><p class="text-xs text-slate-500"><i class="session-online-dot"></i>Active Session</p></div>
+            </div>
+        </aside>
+    
+        <main class="flex-1 flex flex-col h-full overflow-hidden">
+            
+        <header class="bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between z-10 shadow-sm">
+            <div class="flex items-center space-x-4 flex-1 max-w-lg">
+                <div class="relative w-full">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" placeholder="Search accounts..." class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500">
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a class="notification-trigger dashboard-notifications" href="notifications.html" aria-label="3 unread notifications" title="3 unread notifications"><i class="fa-regular fa-bell"></i><span class="notification-dot">3</span></a>
+                <div class="w-10 h-10 rounded-xl bg-slate-900 text-white font-bold flex items-center justify-center text-sm shadow">V</div>
+            </div>
+        </header>
+    
+            <div class="dashboard-page flex-1 overflow-y-auto p-6 lg:p-8">
+                <div class="dashboard-welcome"><div><p class="session-label" id="dashboardGreeting">GOOD EVENING, <span id="dashboardUser"></span></p><h2><span class="wave-emoji">👋</span>Here’s what’s happening today</h2><p class="welcome-copy">Stay on track with your calls, follow-ups and collections.</p></div><div class="dashboard-controls"><div class="top-month-control"><i class="fa-regular fa-calendar-days"></i><strong id="topCalendarMonth"></strong><button id="topCalendarPrev" aria-label="Previous month"><i class="fa-solid fa-chevron-left"></i></button><button id="topCalendarNext" aria-label="Next month"><i class="fa-solid fa-chevron-right"></i></button></div><button id="changeSession" class="session-control"><i class="fa-regular fa-user"></i>Session</button></div></div>
+                <div class="dashboard-layout">
+                    <section class="dashboard-kpis" aria-label="Today’s collections summary">
+                        <article class="dashboard-kpi blue"><span class="kpi-icon"><i class="fa-regular fa-user"></i></span><strong>25</strong><b>Accounts worked<br>today</b><small><i class="fa-solid fa-arrow-up"></i> 12% <em>vs yesterday</em></small></article>
+                        <article class="dashboard-kpi green"><span class="kpi-icon"><i class="fa-solid fa-phone"></i></span><strong>40</strong><b>Calls today</b><small><i class="fa-solid fa-arrow-up"></i> 18% <em>vs yesterday</em></small></article>
+                        <article class="dashboard-kpi purple"><span class="kpi-icon"><i class="fa-regular fa-calendar-check"></i></span><strong>50</strong><b>Arrangements<br>today</b><small><i class="fa-solid fa-arrow-up"></i> 25% <em>vs yesterday</em></small></article>
+                        <article class="dashboard-kpi orange"><span class="kpi-icon"><i class="fa-solid fa-users"></i></span><strong>30</strong><b>Follow-ups due</b><small><i class="fa-solid fa-arrow-up"></i> 10% <em>vs yesterday</em></small></article>
+                        <article class="dashboard-kpi red"><span class="kpi-icon"><i class="fa-solid fa-circle-exclamation"></i></span><strong>20</strong><b>Outstanding accounts</b><small class="down"><i class="fa-solid fa-arrow-down"></i> 5% <em>vs yesterday</em></small></article>
+                        <article class="dashboard-kpi cyan"><span class="kpi-icon"><i class="fa-solid fa-sack-dollar"></i></span><strong class="kpi-currency">R 150,000</strong><b>Collection this month</b><small><i class="fa-solid fa-arrow-up"></i> 22% <em>vs last month</em></small></article>
+                    </section>
+                    <section class="attendance-chart" aria-labelledby="attendanceChartTitle">
+                        <div class="attendance-chart-heading"><div><h3 id="attendanceChartTitle"><i class="fa-solid fa-chart-column mr-2 text-emerald-600"></i>Accounts attended</h3><p>Unique accounts with a call log compared with the active portfolio</p></div><a href="reports.html">Open reports <i class="fa-solid fa-arrow-right ml-1"></i></a></div>
+                        <svg id="attendanceChart" viewBox="0 0 900 230" role="img" aria-label="Daily, weekly, and monthly accounts attended compared with the active portfolio"></svg>
+                    </section>
+                    <section class="collector-leaderboard" aria-labelledby="collectorLeaderboardTitle">
+                        <div class="collector-leaderboard-heading"><div><h3 id="collectorLeaderboardTitle"><i class="fa-solid fa-users"></i>Collector assignments</h3><p>Current workload by assigned balance</p></div><a href="collectors.html">View team <i class="fa-solid fa-arrow-right"></i></a></div>
+                        <div class="leaderboard-row"><span class="leaderboard-rank first">1</span><span class="leaderboard-avatar">VM</span><span class="leaderboard-person"><strong>Vura Mokoena</strong><small>34 accounts · 18 calls today</small></span><strong class="leaderboard-total">R 86,400</strong></div>
+                        <div class="leaderboard-row"><span class="leaderboard-rank second">2</span><span class="leaderboard-avatar">TD</span><span class="leaderboard-person"><strong>Thandiwe Dlamini</strong><small>31 accounts · 16 calls today</small></span><strong class="leaderboard-total">R 74,250</strong></div>
+                        <div class="leaderboard-row"><span class="leaderboard-rank third">3</span><span class="leaderboard-avatar">KN</span><span class="leaderboard-person"><strong>Kabelo Nkosi</strong><small>29 accounts · 15 calls today</small></span><strong class="leaderboard-total">R 68,900</strong></div>
+                    </section>
+                    <section class="calendar-panel" aria-label="Collections calendar">
+                        <div class="calendar-heading"><div><h3>Collections calendar</h3><p>Calls, payment arrangements and follow-ups</p></div><div class="calendar-nav"><button id="calendarPrev" aria-label="Previous month"><i class="fa-solid fa-chevron-left"></i></button><strong id="calendarMonth"></strong><button id="calendarNext" aria-label="Next month"><i class="fa-solid fa-chevron-right"></i></button></div></div>
+                        <div class="calendar-weekdays"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div>
+                        <div class="calendar-grid" id="calendarGrid"></div>
+                        <div class="calendar-legend"><span><i class="event-dot call-dot"></i>Calls</span><span><i class="event-dot arrangement-dot"></i>Arrangements</span><span><i class="event-dot follow-dot"></i>Follow-ups</span></div>
+                        <div class="selected-day-events"><h4 id="selectedDayTitle">Selected day</h4><div id="selectedDayList"></div></div>
+                    </section>
+                    <aside class="dashboard-sidecards">
+                        <a class="dashboard-summary-card arrangement-summary" href="arrangements.html"><span class="summary-icon"><i class="fa-regular fa-handshake"></i></span><span class="summary-text"><small>Payment arrangements</small><strong id="arrangementSummaryCount">9 active</strong><em>View arrangements <i class="fa-solid fa-arrow-right"></i></em></span><span class="arrangement-progress"><i></i></span></a>
+                        <a class="dashboard-summary-card notification-summary" href="notifications.html"><span class="summary-icon"><i class="fa-regular fa-bell"></i></span><span class="summary-text"><small>Notifications</small><strong id="notificationSummaryCount">3 unread</strong><em>Open notifications <i class="fa-solid fa-arrow-right"></i></em></span></a>
+                        <a class="dashboard-summary-card follow-summary" href="follow_ups.html"><span class="summary-icon"><i class="fa-regular fa-clock"></i></span><span class="summary-text"><small>Follow-ups</small><strong id="followSummaryCount">5 due soon</strong><em>View follow-ups <i class="fa-solid fa-arrow-right"></i></em></span></a>
+                        <section class="recent-activity-card"><div class="recent-activity-heading"><h3><i class="fa-regular fa-clock"></i>Recent activity</h3><a href="notifications.html">View all <i class="fa-solid fa-arrow-right"></i></a></div><div class="activity-row"><i class="activity-dot payment"></i><div><strong>Payment received</strong><p>R 2,500.00 from 12345678</p></div><small>2h ago</small></div><div class="activity-row"><i class="activity-dot follow"></i><div><strong>Follow-up completed</strong><p>Client: M. Dlamini</p></div><small>4h ago</small></div><div class="activity-row"><i class="activity-dot arrangement"></i><div><strong>New arrangement</strong><p>R 1,800.00 · 2 instalments</p></div><small>6h ago</small></div><div class="activity-row"><i class="activity-dot follow"></i><div><strong>Follow-up due</strong><p>Client: T. Naidoo</p></div><small>8h ago</small></div></section>
+                        <a class="dashboard-priority" href="follow_ups.html"><div><span class="priority-spark"><i class="fa-solid fa-bolt"></i></span><span><small>Today's focus</small><strong>Keep promises on track</strong></span><i class="fa-solid fa-chevron-right focus-arrow"></i></div><p>Review upcoming callbacks and confirm promised payments.</p></a>
+                    </aside>
+                </div>
+            </div>
+        </main>
+    </div>
+    <dialog class="access-dialog" id="accessDialog">
+        <form id="accessForm">
+            <div class="access-mark"><i class="fa-solid fa-shield-halved"></i></div>
+            <h3>Confirm workspace access</h3>
+            <p>Enter the name on your approved VTO Recovery session and accept the access notice.</p>
+            <label>Signed-in name<input id="sessionNameInput" name="name" required placeholder="Your approved profile name"></label>
+            <label class="access-accept"><input type="checkbox" required> I confirm I’m authorized to use this collections workspace.</label>
+            <button type="submit" class="access-continue">Accept and continue</button>
+        </form>
+    </dialog>
+<script src="app-data.js?v=20261029-review-1"></script>
+<script>
+const sessionKey='vtoAcceptedSession';
+if(!VTOData.accounts().length) location.replace('accounts.html');
+function sessionProfile(){try{return JSON.parse(localStorage.getItem(sessionKey));}catch{return null;}}
+function showSession(){const saved=sessionProfile();document.getElementById('dashboardUser').textContent=saved?.name||'Vura';}
+const accessDialog=document.getElementById('accessDialog');
+document.getElementById('changeSession').addEventListener('click',()=>{const saved=sessionProfile();document.getElementById('sessionNameInput').value=saved?.name||'';accessDialog.showModal();});
+document.getElementById('accessForm').addEventListener('submit',event=>{event.preventDefault();const name=new FormData(event.currentTarget).get('name').trim();localStorage.setItem(sessionKey,JSON.stringify({name,acceptedAt:new Date().toISOString()}));showSession();accessDialog.close();});
+showSession();
+if(!sessionProfile()) { document.getElementById('sessionNameInput').value='Vura'; accessDialog.showModal(); }
+const hourNow=new Date().getHours();document.getElementById('dashboardGreeting').firstChild.textContent=`${hourNow<12?'GOOD MORNING':hourNow<17?'GOOD AFTERNOON':'GOOD EVENING'}, `;
+
+let shownMonth=new Date(new Date().getFullYear(),new Date().getMonth(),1), selectedDate=new Date();
+const demoEvents=[];
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const dayKey=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+function calendarEvents(){const events=demoEvents.map(e=>({date:dayKey(new Date(shownMonth.getFullYear(),shownMonth.getMonth(),e.day)),...e}));try{(JSON.parse(localStorage.getItem('vtoArrangements')||'[]')).forEach(a=>events.push({date:a.next,type:'arrangement',title:`Payment plan · ${a.client}`}));(JSON.parse(localStorage.getItem('vtoCallLogs')||'[]')).forEach(c=>{if(c.date)events.push({date:c.date,type:'call',title:`Call · ${c.client}`});if(c.follow)events.push({date:c.follow,type:'follow',title:`Follow-up · ${c.client}`});});}catch{}return events;}
+function renderDay(){const key=dayKey(selectedDate), events=calendarEvents().filter(e=>e.date===key);document.getElementById('selectedDayTitle').textContent=selectedDate.toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric'});document.getElementById('selectedDayList').innerHTML=events.length?events.map(e=>`<div class="day-event ${e.type}"><i class="event-dot ${e.type}-dot"></i><span>${esc(e.title)}</span></div>`).join(''):'<p class="no-day-events">No scheduled activity for this date.</p>';}
+function renderCalendar(){const year=shownMonth.getFullYear(),month=shownMonth.getMonth(),first=new Date(year,month,1),startOffset=(first.getDay()+6)%7,start=new Date(year,month,1-startOffset),grid=document.getElementById('calendarGrid'),events=calendarEvents(),monthLabel=shownMonth.toLocaleDateString(undefined,{month:'long',year:'numeric'});document.getElementById('calendarMonth').textContent=monthLabel;document.getElementById('topCalendarMonth').textContent=monthLabel;grid.innerHTML='';for(let i=0;i<42;i++){const d=new Date(start.getFullYear(),start.getMonth(),start.getDate()+i),key=dayKey(d),inMonth=d.getMonth()===month,ev=events.filter(e=>e.date===key),cell=document.createElement('button');cell.type='button';cell.className=`calendar-day${inMonth?'':' outside'}${key===dayKey(selectedDate)?' chosen':''}${key===dayKey(new Date())?' today':''}`;cell.setAttribute('aria-label',`${d.toDateString()}, ${ev.length} scheduled items`);cell.innerHTML=`<span class="day-number">${d.getDate()}</span>${ev.slice(0,2).map(e=>`<span class="calendar-event ${e.type}"><i></i>${esc(e.title)}</span>`).join('')}${ev.length>2?`<small class="more-events">+${ev.length-2} more</small>`:''}`;cell.addEventListener('click',()=>{selectedDate=d;renderCalendar();renderDay();});grid.appendChild(cell);}renderDay();}
+document.getElementById('calendarPrev').addEventListener('click',()=>{shownMonth=new Date(shownMonth.getFullYear(),shownMonth.getMonth()-1,1);renderCalendar();});document.getElementById('calendarNext').addEventListener('click',()=>{shownMonth=new Date(shownMonth.getFullYear(),shownMonth.getMonth()+1,1);renderCalendar();});
+document.getElementById('topCalendarPrev').addEventListener('click',()=>{shownMonth=new Date(shownMonth.getFullYear(),shownMonth.getMonth()-1,1);renderCalendar();});document.getElementById('topCalendarNext').addEventListener('click',()=>{shownMonth=new Date(shownMonth.getFullYear(),shownMonth.getMonth()+1,1);renderCalendar();});
+function renderDashboardCounts(){const plans=VTOData.arrangements(),logs=VTOData.calls();document.getElementById('arrangementSummaryCount').textContent=`${plans.filter(p=>p.status==='Active').length} active`;document.getElementById('followSummaryCount').textContent=`${logs.filter(c=>c.follow).length} scheduled`;}
+renderCalendar();renderDashboardCounts();
+const todayKey=dayKey(new Date()),accountsFromImport=VTOData.accounts(),callsFromStore=VTOData.calls(),plansFromStore=VTOData.arrangements();
+const kpis=document.querySelectorAll('.dashboard-kpi');
+const callsToday=callsFromStore.filter(call=>call.date===todayKey),workedToday=new Set(callsToday.map(call=>call.account)).size,followups=callsFromStore.filter(call=>call.follow&&call.follow>=todayKey).length,overdue=accountsFromImport.filter(account=>account.days>0).length,outstanding=accountsFromImport.reduce((sum,account)=>sum+(Number(account.balance)||0),0);
+[[workedToday,'Accounts worked today'],[callsToday.length,'Calls today'],[plansFromStore.filter(plan=>plan.status==='Active').length,'Active arrangements'],[followups,'Follow-ups scheduled'],[overdue,'Overdue accounts'],[outstanding,'Outstanding portfolio']].forEach(([value,label],index)=>{const card=kpis[index];if(!card)return;card.querySelector('strong').textContent=index===5?VTOData.money(value):String(value);card.querySelector('b').textContent=label;const trend=card.querySelector('small');if(trend)trend.textContent='From current workspace data';});
+const accountIds=new Set(accountsFromImport.map(account=>account.id)),portfolioTotal=accountsFromImport.length;
+const weekStart=new Date();weekStart.setHours(0,0,0,0);weekStart.setDate(weekStart.getDate()-((weekStart.getDay()+6)%7));
+const periods=[{label:'Today',from:todayKey,to:todayKey},{label:'This week',from:dayKey(weekStart),to:todayKey},{label:'This month',from:`${todayKey.slice(0,7)}-01`,to:todayKey}];
+const chartData=periods.map(period=>({...period,attended:new Set(callsFromStore.filter(call=>call.date>=period.from&&call.date<=period.to&&accountIds.has(call.account)).map(call=>call.account)).size}));
+const svg=document.getElementById('attendanceChart'),barX=145,barWidth=580,rowY=[72,132,192];
+const grid=[0,25,50,75,100].map(tick=>{const x=barX+barWidth*tick/100;return `<line x1="${x}" y1="38" x2="${x}" y2="207" stroke="#e8edf0" stroke-width="1"/><text x="${x}" y="27" text-anchor="middle" fill="#87939d" font-size="11">${tick}%</text>`;}).join('');
+const bars=chartData.map((item,index)=>{const y=rowY[index],ratio=portfolioTotal?Math.min(item.attended/portfolioTotal,1):0,width=barWidth*ratio;return `<text x="8" y="${y+5}" fill="#405261" font-size="13" font-weight="600">${item.label}</text><rect x="${barX}" y="${y-12}" width="${barWidth}" height="24" rx="8" fill="#edf1f3"/><rect x="${barX}" y="${y-12}" width="${width}" height="24" rx="8" fill="#24a36a"/><text x="${barX+barWidth+18}" y="${y+5}" fill="#263b4a" font-size="13" font-weight="700">${item.attended} / ${portfolioTotal}</text>`;}).join('');
+svg.innerHTML=`<g font-family="Inter, sans-serif">${grid}${bars}</g>`;
+const activity=document.querySelector('.recent-activity-card');
+const recentItems=[...callsFromStore.slice(0,4).map(call=>({type:'call',title:`${call.outcome||'Call logged'}`,detail:`${call.client||call.account}${call.notes?` · ${call.notes}`:''}`,date:call.date||''})),...plansFromStore.slice(0,3).map(plan=>({type:'arrangement',title:`${plan.status||'Active'} arrangement`,detail:`${plan.client} · ${VTOData.money(plan.amount)}`,date:plan.next||''}))].sort((a,b)=>String(b.date).localeCompare(String(a.date))).slice(0,4);
+activity.innerHTML=`<div class="recent-activity-heading"><h3><i class="fa-regular fa-clock"></i>Recent activity</h3><a href="call_log.html">Open call log <i class="fa-solid fa-arrow-right"></i></a></div>${recentItems.map(item=>`<div class="activity-row"><i class="activity-dot ${item.type==='arrangement'?'arrangement':'follow'}"></i><div><strong>${VTOData.safe(item.title)}</strong><p>${VTOData.safe(item.detail)}</p></div><small>${VTOData.safe(item.date)}</small></div>`).join('')||'<p class="no-workspace-activity">Activity will appear here after accounts are imported and calls are logged.</p>'}`;
+const leaderboard=document.querySelector('.collector-leaderboard'),leaderRows=window.VTOData.collectors().map(name=>{const items=window.VTOData.accounts().filter(account=>account.assignedTo===name);return {name,items,total:items.reduce((sum,account)=>sum+(Number(account.balance)||0),0)};}).filter(item=>item.items.length).sort((a,b)=>b.items.length-a.items.length||b.total-a.total).slice(0,3);
+leaderboard.querySelectorAll('.leaderboard-row').forEach(row=>row.remove());
+leaderboard.insertAdjacentHTML('beforeend',leaderRows.map((item,index)=>`<div class="leaderboard-row"><span class="leaderboard-rank ${['first','second','third'][index]}">${index+1}</span><span class="leaderboard-avatar">${window.VTOData.safe(item.name.split(' ').map(part=>part[0]).join('').slice(0,2))}</span><span class="leaderboard-person"><strong>${window.VTOData.safe(item.name)}</strong><small>${item.items.length} accounts assigned</small></span><strong class="leaderboard-total">${window.VTOData.safe(window.VTOData.money(item.total))}</strong></div>`).join('')||'<p class="leaderboard-empty">Assign accounts to collectors from the Accounts page to see the team workload.</p>');
+</script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VTO Recovery - Collections Suite</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } } }</script>
+    <link rel="stylesheet" href="app.css?v=20261024-admin-system-1">
+</head>
+<body class="h-full bg-slate-100 font-sans text-slate-800 antialiased overflow-hidden">
+<div class="flex h-screen w-screen overflow-hidden">
+    <aside class="w-64 bg-white border-r border-slate-200 flex flex-col z-20 shadow-sm hidden md:flex">
+        <div class="p-6 border-b border-slate-100 flex items-center space-x-3"><div class="w-10 h-10 rounded-xl bg-emerald-500 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-emerald-500/20">VTO</div><div><h1 class="font-bold text-slate-900 tracking-tight leading-none">VTO Recovery</h1><span class="text-xs text-slate-500 font-medium">Collections Suite</span></div></div>
+        <nav class="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto text-sm">
+            <a href="index.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900"><i class="fa-solid fa-chart-pie w-5 mr-3 text-slate-400"></i>Dashboard</a>
+            <a href="accounts.html" class="flex items-center px-4 py-3 rounded-xl font-semibold text-emerald-700 bg-emerald-50/80 shadow-sm"><i class="fa-solid fa-folder-open w-5 mr-3 text-emerald-600"></i>Accounts</a>
+            <a href="assigned_accounts.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900"><i class="fa-solid fa-user-check w-5 mr-3 text-slate-400"></i>Assigned accounts</a>
+            <a href="call_log.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900"><i class="fa-solid fa-phone-volume w-5 mr-3 text-slate-400"></i>Call Log</a>
+            <a href="arrangements.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900"><i class="fa-solid fa-calendar-days w-5 mr-3 text-slate-400"></i>Arrangements</a>
+            <a href="follow_ups.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900"><i class="fa-solid fa-clock-rotate-left w-5 mr-3 text-slate-400"></i>Follow-ups</a>
+            <a href="clients.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900"><i class="fa-solid fa-users w-5 mr-3 text-slate-400"></i>Clients</a>
+            <a href="collectors.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors"><i class="fa-solid fa-user-group w-5 mr-3 text-slate-400"></i>Collectors</a>
+            <a href="reports.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900 transition-colors"><i class="fa-solid fa-chart-column w-5 mr-3 text-slate-400"></i>Reports</a>
+                        <a href="notifications.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900"><i class="fa-solid fa-bell w-5 mr-3 text-slate-400"></i>Notifications</a>
+        </nav>
+        <div class="p-4 border-t border-slate-100 flex items-center space-x-3"><div class="w-9 h-9 rounded-full bg-slate-900 text-white font-semibold flex items-center justify-center text-sm shadow">V</div><div><p class="text-sm font-semibold text-slate-800">Collector One</p><p class="text-xs text-slate-500">Active Session</p></div></div>
+    </aside>
+    <main class="flex-1 flex flex-col h-full overflow-hidden">
+        <header class="bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between z-10 shadow-sm"><div class="flex items-center space-x-4 flex-1 max-w-lg"><div class="relative w-full"><span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400"><i class="fa-solid fa-magnifying-glass"></i></span><input id="accountsSearch" type="search" placeholder="Search accounts..." class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"></div></div><div class="flex items-center space-x-4"><a class="notification-trigger" href="notifications.html" aria-label="Open notifications" title="Notifications"><i class="fa-regular fa-bell"></i><span class="notification-dot"></span></a><div class="w-10 h-10 rounded-xl bg-slate-900 text-white font-bold flex items-center justify-center text-sm shadow">V</div></div></header>
+        <div class="flex-1 overflow-y-auto p-6 lg:p-8 space-y-6">
+            <div class="flex flex-wrap items-end justify-between gap-4"><div><h2 class="text-2xl font-bold text-slate-900 tracking-tight">Master Accounts Portfolio</h2><p class="text-sm text-slate-500 mt-0.5">Import raw data, review accounts, and assign collector portfolios by street postal code.</p></div><div class="flex flex-wrap items-center gap-3"><select id="accountView" aria-label="Spreadsheet status" class="h-11 rounded-xl border border-slate-200 bg-white px-3 text-sm"><option value="imported">Imported</option><option value="reviewed">Reviewed</option><option value="rejected">Rejected</option></select><input id="excelFile" type="file" accept=".xlsx,.xls" class="hidden"><button id="importExcelButton" type="button" class="inline-flex h-11 items-center gap-2 rounded-xl bg-emerald-600 px-5 text-sm font-semibold text-white shadow-sm transition hover:bg-emerald-700"><i class="fa-solid fa-file-excel"></i>Import Excel</button><span id="importStatus" class="text-sm text-slate-500" role="status" aria-live="polite"></span></div></div>
+            <section id="postalAssignmentPanel" class="hidden rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"><div class="mb-4"><h3 class="text-base font-semibold text-slate-900">Assign collector by street postal code</h3><p class="mt-1 text-sm text-slate-500">Choose a collector for each postal code to assign every reviewed account in that group.</p></div><div class="overflow-x-auto"><table class="w-full min-w-[600px] text-left text-sm"><thead><tr class="border-b border-slate-200 text-xs uppercase text-slate-400"><th class="px-3 py-3">Street postal code</th><th class="px-3 py-3">Accounts</th><th class="px-3 py-3">Collector</th></tr></thead><tbody id="postalAssignmentRows" class="divide-y divide-slate-100"></tbody></table></div><p id="postalAssignmentEmpty" class="py-5 text-center text-sm text-slate-500" hidden>No reviewed accounts have a street postal code.</p></section>
+            <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6"><p class="mb-4 text-sm text-slate-500">Total accounts: <strong id="accountCount" class="text-slate-800">0</strong></p><div class="overflow-x-auto"><table id="accountsTable" class="w-full min-w-[2400px] text-left text-sm"><thead><tr id="accountHeaders" class="border-b border-slate-200 text-slate-400 text-xs uppercase"></tr></thead><tbody id="accountRows" class="divide-y divide-slate-100"></tbody></table></div><p id="accountsEmpty" class="py-8 text-center text-sm text-slate-500">Import the Excel workbook to load the account portfolio.</p></div>
+        </div>
+    </main>
+</div>
+<script src="app-data.js?v=20261029-review-1"></script>
+<script>
+(() => {
+    const keys = { imported: 'vtoImportedAccounts', reviewed: 'vtoReviewedAccounts', rejected: 'vtoRejectedAccounts' };
+    const columns = ['contract_number','loan_id','target_date','days_overdue','calculated_debt','principal','initiation_fee','vat_if','service_fee','vat_sf','interest','Date of Default','Jabulani Account No OR Reference','Debtor ID or Passport No','Debtor Firstname','Debtor Second Name','Debtor Surname','Debtor Initials','Debtor Title','Home Phone 1','Cell Phone 1','Cell Phone 2','Work Phone 1','Email 1','Email 2','Street Address line 1','Street Address line 2','Street Address line 3','Street Address line 4','Street postal code','Jb_internal_reference','assigned_agency'];
+    const picker=document.getElementById('excelFile'), importButton=document.getElementById('importExcelButton'), status=document.getElementById('importStatus');
+    const tbody=document.getElementById('accountRows'), count=document.getElementById('accountCount'), headers=document.getElementById('accountHeaders');
+    const search=document.getElementById('accountsSearch'), view=document.getElementById('accountView');
+    const postalAssignmentPanel=document.getElementById('postalAssignmentPanel'),postalAssignmentRows=document.getElementById('postalAssignmentRows'),postalAssignmentEmpty=document.getElementById('postalAssignmentEmpty');
+    const safe=value=>String(value??'').replace(/[&<>"']/g,char=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+    const read=key=>{try{return JSON.parse(localStorage.getItem(key)||'[]')}catch{return []}};
+    const write=(key,rows)=>localStorage.setItem(key,JSON.stringify(rows));
+    const normalized=row=>row.contract_number!==undefined?row:({contract_number:row.id||'',loan_id:'',target_date:'',days_overdue:row.daysOverdue||'',calculated_debt:row.balance||'','Cell Phone 1':row.number||'','Date of Default':row.defaultDate||'','Debtor Firstname':row.name||''});
+    const store={imported:read(keys.imported).map(normalized),reviewed:read(keys.reviewed).map(normalized),rejected:read(keys.rejected).map(normalized)};
+    const accountId=row=>String(row.contract_number||row['Jabulani Account No OR Reference']||row.loan_id||'').trim();
+    const assignmentState=VTOData.assignments();
+    const postalCodeOf=row=>String(row['Street postal code']||'').trim();
+    const setStatus=(message,kind='text-slate-500')=>{status.className=`text-sm ${kind}`;status.textContent=message;};
+    function rowMarkup(row,index){
+        const editable=view.value==='imported', rejected=view.value==='rejected';
+        const fields=columns.map(column=>`<td class="max-w-xs whitespace-nowrap px-3 py-3 ${['contract_number','loan_id','Debtor ID or Passport No'].includes(column)?'font-mono':''}" title="${safe(row[column])}">${editable?`<input class="account-edit-field min-w-28 rounded-md border border-slate-200 px-2 py-1" data-column="${safe(column)}" value="${safe(row[column]??'')}">`:safe(row[column]??'—')}</td>`).join('');
+        const actions=editable?`<td class="whitespace-nowrap px-3 py-3"><button type="button" class="save-account rounded-lg bg-emerald-600 px-3 py-2 text-xs font-semibold text-white" data-index="${index}">Save to reviewed</button><button type="button" class="reject-account ml-2 rounded-lg border border-rose-200 px-3 py-2 text-xs font-semibold text-rose-700" data-index="${index}">Reject</button></td>`:rejected?'<td class="px-3 py-3 text-xs font-medium text-rose-700">Rejected</td>':'<td class="px-3 py-3 text-xs font-medium text-emerald-700">Reviewed</td>';
+        return `<tr data-row-index="${index}" data-postal-group="${safe(postalCodeOf(row)||'__missing__')}">${fields}${actions}</tr>`;
+    }
+    function render(){
+        const rows=store[view.value]||[];
+        headers.innerHTML=columns.map(column=>`<th class="whitespace-nowrap px-3 py-3">${safe(column)}</th>`).join('')+'<th class="whitespace-nowrap px-3 py-3">Action</th>';
+        const groups=new Map();rows.forEach((row,index)=>{const code=postalCodeOf(row)||'';if(!groups.has(code))groups.set(code,[]);groups.get(code).push({row,index});});
+        tbody.innerHTML=[...groups.entries()].sort(([a],[b])=>a.localeCompare(b,undefined,{numeric:true})).flatMap(([code,items])=>[
+            `<tr class="postal-group-heading" data-postal-group="${safe(code||'__missing__')}"><th colspan="${columns.length+1}" class="border-b border-slate-200 bg-slate-50 px-3 py-3 text-left text-xs font-bold uppercase tracking-wide text-slate-600">Street postal code: ${safe(code||'Not provided')} <span class="ml-2 font-medium normal-case tracking-normal text-slate-500">${items.length} account${items.length===1?'':'s'}</span></th></tr>`,
+            ...items.map(({row,index})=>rowMarkup(row,index))
+        ]).join(''); count.textContent=String(rows.length);
+        document.getElementById('accountsEmpty').hidden=rows.length>0;
+        document.getElementById('accountsEmpty').textContent=({imported:'Import the Excel workbook to load raw account data.',reviewed:'No accounts have been reviewed yet.',rejected:'No rejected accounts.'})[view.value];
+        postalAssignmentPanel.classList.toggle('hidden',view.value!=='reviewed');
+        renderPostalAssignments();
+        filterRows();
+    }
+    function renderPostalAssignments(){
+        if(view.value!=='reviewed'){postalAssignmentRows.innerHTML='';return;}
+        const groups=new Map();store.reviewed.forEach(row=>{const code=postalCodeOf(row);if(code){if(!groups.has(code))groups.set(code,[]);groups.get(code).push(row);}});
+        const collectors=VTOData.collectors();
+        postalAssignmentRows.innerHTML=[...groups.entries()].sort(([a],[b])=>a.localeCompare(b,undefined,{numeric:true})).map(([code,rows])=>{
+            const current=rows.map(row=>assignmentState[accountId(row)]||'');
+            const selected=current.every(name=>name===current[0])?current[0]:'';
+            const options=['<option value="">Choose collector</option>',...collectors.map(name=>`<option value="${safe(name)}" ${selected===name?'selected':''}>${safe(name)}</option>`)].join('');
+            return `<tr><td class="px-3 py-3 font-medium text-slate-800">${safe(code)}</td><td class="px-3 py-3">${rows.length}</td><td class="px-3 py-3"><select class="postal-collector-select min-w-48 rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm" data-postal-code="${safe(code)}" aria-label="Assign postal code ${safe(code)} to collector">${options}</select></td></tr>`;
+        }).join('');
+        postalAssignmentEmpty.hidden=groups.size>0;
+    }
+    function filterRows(){const query=search.value.trim().toLowerCase();for(const row of tbody.rows){if(row.classList.contains('postal-group-heading'))continue;const searchable=[row.textContent,...[...row.querySelectorAll('input')].map(input=>input.value)].join(' ').toLowerCase();row.hidden=!!query&&!searchable.includes(query);}for(const heading of tbody.querySelectorAll('.postal-group-heading')){const group=heading.dataset.postalGroup;heading.hidden=![...tbody.querySelectorAll('tr[data-row-index]')].some(row=>row.dataset.postalGroup===group&&!row.hidden);}}
+    importButton.addEventListener('click',()=>picker.click());
+    view.addEventListener('change',render); search.addEventListener('input',filterRows);
+    tbody.addEventListener('click',event=>{
+        const save=event.target.closest('.save-account'), reject=event.target.closest('.reject-account'); if(!save&&!reject)return;
+        const index=Number((save||reject).dataset.index), source=store.imported[index]; if(!source)return;
+        if(save){const edited={...source};tbody.querySelectorAll(`tr[data-row-index="${index}"] .account-edit-field`).forEach(input=>edited[input.dataset.column]=input.value);store.reviewed.push(edited);setStatus('Account saved to Reviewed.','text-emerald-700');}
+        else{store.rejected.push(source);setStatus('Account moved to Rejected.','text-rose-700');}
+        store.imported.splice(index,1);write(keys.imported,store.imported);write(keys.reviewed,store.reviewed);write(keys.rejected,store.rejected);render();
+    });
+    postalAssignmentRows.addEventListener('change',event=>{const select=event.target.closest('.postal-collector-select');if(!select)return;const code=select.dataset.postalCode,collector=select.value,group=store.reviewed.filter(row=>postalCodeOf(row)===code),ids=group.map(accountId).filter(Boolean);VTOData.assignMany(ids,collector);ids.forEach(id=>{if(collector)assignmentState[id]=collector;else delete assignmentState[id];});setStatus(collector?`${ids.length} account${ids.length===1?'':'s'} with street postal code ${code} assigned to ${collector}.`:`Accounts with street postal code ${code} are unassigned.`,'text-emerald-700');renderPostalAssignments();});
+    picker.addEventListener('change',async()=>{const file=picker.files?.[0];if(!file)return;setStatus(`Reading ${file.name}…`);try{if(!window.XLSX)throw new Error('Excel reader did not load. Check your connection and try again.');const workbook=XLSX.read(await file.arrayBuffer(),{type:'array',cellDates:false}),sheet=workbook.Sheets[workbook.SheetNames[0]];if(!sheet)throw new Error('The workbook does not contain a worksheet.');const rows=XLSX.utils.sheet_to_json(sheet,{defval:'',raw:true});if(!rows.length)throw new Error('The first worksheet has no account rows.');const key=value=>String(value??'').trim().toLowerCase().replace(/[^a-z0-9]/g,'');const incoming=rows.map(source=>{const data=Object.fromEntries(Object.entries(source).map(([field,value])=>[key(field),value]));return Object.fromEntries(columns.map(column=>[column,data[key(column)]??'']));}).filter(row=>accountId(row)||row['Debtor Firstname']||row['Debtor Surname']);if(!incoming.length)throw new Error('No account rows with an account ID or debtor name were found.');const known=new Set([...store.imported,...store.reviewed,...store.rejected].map(accountId).filter(Boolean));let added=0;incoming.forEach(row=>{const id=accountId(row);if(!id||!known.has(id)){store.imported.push(row);if(id)known.add(id);added++;}});write(keys.imported,store.imported);view.value='imported';render();setStatus(`${added} new raw account${added===1?'':'s'} imported. Existing accounts were left unchanged.`,'text-emerald-700');}catch(error){setStatus(error.message||'Unable to read that Excel file.','text-red-600');}finally{picker.value='';}});
+    render();
+})();
+</script>
+</body>
+</html>

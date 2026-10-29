@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - VTO Recovery</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['Inter', 'sans-serif'] } } } }</script>
+    <link rel="stylesheet" href="app.css?v=20261024-admin-system-1">
+    <style>
+        .report-card { min-width:0; padding:22px; border:1px solid #dfe6eb; border-radius:16px; background:#fff; box-shadow:0 2px 7px #172b3b0b; }
+        .report-card-head { display:flex; justify-content:space-between; align-items:flex-start; gap:10px; }
+        .report-icon { width:48px; height:48px; display:grid; place-items:center; border-radius:14px; color:#20577f; background:#eaf1f6; font-size:19px; }
+        .report-period { padding:5px 10px; border-radius:99px; color:#dc741e; background:#fff3e9; font-size:11px; font-weight:700; }
+        .report-card h3 { margin:18px 0 3px; color:#202d3a; font-size:17px; font-weight:700; }
+        .report-card p { color:#7a8792; font-size:12px; }
+        .report-number { margin:17px 0 3px; color:#174a70; font-size:26px; font-weight:750; letter-spacing:-.04em; }
+        .report-meta { color:#7b8791; font-size:12px; }
+        .report-actions { display:flex; gap:9px; margin-top:18px; }
+        .report-actions button { min-height:40px; flex:1; border:1px solid #dfe6eb; border-radius:10px; color:#263746; background:#f8fafb; font-size:13px; font-weight:650; }
+        .report-actions .report-export { border-color:#fa811b; color:#182635; background:#fa811b; }
+        .report-filters label { display:grid; gap:6px; color:#71808d; font-size:12px; font-weight:600; }
+        .report-filters input,.report-filters select { width:100%; height:44px; padding:0 12px; border:1px solid #dce4ea; border-radius:10px; color:#344454; background:white; font:inherit; font-size:13px; }
+        .report-preview[hidden] { display:none; }
+        .report-table { width:100%; min-width:760px; border-collapse:collapse; text-align:left; font-size:12px; }
+        .report-table th { padding:12px; border-bottom:1px solid #e5ebef; color:#788592; background:#f9fafb; font-size:10px; text-transform:uppercase; }
+        .report-table td { padding:12px; border-bottom:1px solid #edf1f3; color:#344454; vertical-align:top; }
+        @media(max-width:800px){.report-filters{grid-template-columns:1fr 1fr!important}.report-filter-apply{grid-column:1/-1}}
+        @media(max-width:540px){.report-filters{grid-template-columns:1fr!important}.report-filter-apply{grid-column:auto}}
+    </style>
+</head>
+<body class="h-full bg-slate-100 font-sans text-slate-800 antialiased overflow-hidden">
+<div class="flex h-screen w-screen overflow-hidden">
+    <aside class="w-64 bg-white border-r border-slate-200 flex flex-col z-20 shadow-sm hidden md:flex">
+        <div class="p-6 border-b border-slate-100 flex items-center space-x-3"><div class="w-10 h-10 rounded-xl bg-emerald-500 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-emerald-500/20">VTO</div><div><h1 class="font-bold text-slate-900 tracking-tight leading-none">VTO Recovery</h1><span class="text-xs text-slate-500 font-medium">Collections Suite</span></div></div>
+        <nav class="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto text-sm">
+            <a href="index.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900"><i class="fa-solid fa-chart-pie w-5 mr-3 text-slate-400"></i>Dashboard</a>
+            <a href="accounts.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900"><i class="fa-solid fa-folder-open w-5 mr-3 text-slate-400"></i>Accounts</a>
+            <a href="assigned_accounts.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900"><i class="fa-solid fa-user-check w-5 mr-3 text-slate-400"></i>Assigned accounts</a>
+            <a href="call_log.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900"><i class="fa-solid fa-phone-volume w-5 mr-3 text-slate-400"></i>Call Log</a>
+            <a href="arrangements.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900"><i class="fa-solid fa-calendar-days w-5 mr-3 text-slate-400"></i>Arrangements</a>
+            <a href="follow_ups.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900"><i class="fa-solid fa-clock-rotate-left w-5 mr-3 text-slate-400"></i>Follow-ups</a>
+            <a href="clients.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900"><i class="fa-solid fa-users w-5 mr-3 text-slate-400"></i>Clients</a>
+            <a href="collectors.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900"><i class="fa-solid fa-user-group w-5 mr-3 text-slate-400"></i>Collectors</a>
+            <a href="reports.html" class="flex items-center px-4 py-3 rounded-xl font-semibold text-emerald-700 bg-emerald-50/80 shadow-sm"><i class="fa-solid fa-chart-column w-5 mr-3 text-emerald-600"></i>Reports</a>
+            <a href="notifications.html" class="flex items-center px-4 py-3 rounded-xl font-medium text-slate-600 hover:bg-slate-50 hover:text-slate-900"><i class="fa-solid fa-bell w-5 mr-3 text-slate-400"></i>Notifications</a>
+        </nav>
+        <div class="p-4 border-t border-slate-100 flex items-center space-x-3"><div class="w-9 h-9 rounded-full bg-slate-900 text-white font-semibold flex items-center justify-center text-sm shadow">V</div><div><p class="text-sm font-semibold text-slate-800">Collector One</p><p class="text-xs text-slate-500">Active Session</p></div></div>
+    </aside>
+    <main class="flex-1 flex flex-col h-full overflow-hidden">
+        <header class="bg-white border-b border-slate-200 px-6 py-4 flex items-center justify-between z-10 shadow-sm"><div class="relative w-full max-w-lg"><span class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-slate-400"><i class="fa-solid fa-magnifying-glass"></i></span><input id="reportSearch" type="search" placeholder="Search reports..." class="w-full pl-10 pr-4 py-2 bg-slate-50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500"></div><div class="ml-4 flex items-center space-x-4"><a class="notification-trigger" href="notifications.html" aria-label="Open notifications" title="Notifications"><i class="fa-regular fa-bell"></i><span class="notification-dot"></span></a><div class="w-10 h-10 rounded-xl bg-slate-900 text-white font-bold flex items-center justify-center text-sm shadow">V</div></div></header>
+        <div class="flex-1 overflow-y-auto bg-slate-50 p-6 lg:p-8 space-y-6">
+            <div><h2 class="text-3xl font-bold tracking-tight text-slate-900">Reports</h2><p class="mt-1 text-sm text-slate-500">Review daily, weekly, and monthly account attendance and collection activity.</p></div>
+            <section class="report-filters grid grid-cols-5 items-end gap-3 rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                <label>From<input id="reportFrom" type="date"></label><label>To<input id="reportTo" type="date"></label>
+                <label>Collector<select id="reportCollector"><option value="">All collectors</option></select></label>
+                <label>Outcome<select id="reportOutcome"><option value="">All outcomes</option></select></label>
+                <button id="applyReportFilters" class="report-filter-apply h-11 rounded-xl bg-slate-800 px-4 text-sm font-semibold text-white hover:bg-slate-700">Apply filters</button>
+            </section>
+            <p id="reportStatus" class="min-h-4 text-sm text-slate-500" role="status" aria-live="polite"></p>
+            <section id="reportCards" class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3" aria-label="Attendance summaries"></section>
+            <section id="reportPreview" class="report-preview overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm" hidden><div class="flex items-center justify-between border-b border-slate-200 p-5"><div><h3 id="previewTitle" class="font-semibold text-slate-900">Report preview</h3><p id="previewSubtitle" class="mt-1 text-xs text-slate-500"></p></div><button id="closePreview" class="h-9 rounded-lg border border-slate-200 px-3 text-sm text-slate-600">Close</button></div><div class="overflow-x-auto"><table class="report-table"><thead><tr><th>Date</th><th>Account</th><th>Collector</th><th>Outcome</th><th>Notes</th></tr></thead><tbody id="previewRows"></tbody></table></div><p id="previewEmpty" class="p-8 text-center text-sm text-slate-500" hidden>No call records match this report.</p></section>
+        </div>
+    </main>
+</div>
+<script src="app-data.js?v=20261029-review-1"></script>
+<script>
+(() => {
+    const D=window.VTOData,safe=D.safe,accounts=D.accounts(),calls=D.calls(),collectors=D.collectors();
+    const today=new Date(),dayKey=date=>`${date.getFullYear()}-${String(date.getMonth()+1).padStart(2,'0')}-${String(date.getDate()).padStart(2,'0')}`;
+    const todayKey=dayKey(today),weekStart=new Date(today.getFullYear(),today.getMonth(),today.getDate()-((today.getDay()+6)%7)),monthStart=`${todayKey.slice(0,7)}-01`;
+    const fromInput=document.getElementById('reportFrom'),toInput=document.getElementById('reportTo'),collectorInput=document.getElementById('reportCollector'),outcomeInput=document.getElementById('reportOutcome');
+    const cards=document.getElementById('reportCards'),status=document.getElementById('reportStatus'),preview=document.getElementById('reportPreview');
+    fromInput.value=monthStart;toInput.value=todayKey;
+    collectors.forEach(name=>collectorInput.insertAdjacentHTML('beforeend',`<option value="${safe(name)}">${safe(name)}</option>`));
+    [...new Set(calls.map(call=>call.outcome).filter(Boolean))].sort().forEach(name=>outcomeInput.insertAdjacentHTML('beforeend',`<option value="${safe(name)}">${safe(name)}</option>`));
+    const periods=[
+        {id:'daily',label:'Daily',title:'Daily Collection Report',icon:'fa-calendar-day',start:todayKey,end:todayKey,description:"Today's account attendance and calls"},
+        {id:'weekly',label:'Weekly',title:'Weekly Report',icon:'fa-arrow-trend-up',start:dayKey(weekStart),end:todayKey,description:'This week’s collection activity'},
+        {id:'monthly',label:'Monthly',title:'Monthly Report',icon:'fa-calendar-days',start:monthStart,end:todayKey,description:'Month-to-date collection summary'}
+    ];
+    let filteredPeriods=[];
+    function activeFilters(){return {from:fromInput.value||'0000-01-01',to:toInput.value||'9999-12-31',collector:collectorInput.value,outcome:outcomeInput.value};}
+    function callsFor(period,filters){const from=period.start>filters.from?period.start:filters.from,to=period.end<filters.to?period.end:filters.to;if(from>to)return [];return calls.filter(call=>call.date>=from&&call.date<=to&&(!filters.collector||call.collector===filters.collector)&&(!filters.outcome||call.outcome===filters.outcome));}
+    function accountsFor(filters){return filters.collector?accounts.filter(account=>account.assignedTo===filters.collector):accounts;}
+    function summary(period,filters){const records=callsFor(period,filters),validIds=new Set(accountsFor(filters).map(account=>account.id)),attended=new Set(records.map(call=>call.account).filter(id=>validIds.has(id)));return {records,total:validIds.size,attended:attended.size,connected:records.filter(call=>String(call.outcome||'').toLowerCase()==='connected').length,collectors:new Set(records.map(call=>call.collector).filter(Boolean)).size};}
+    function csvCell(value){return `"${String(value??'').replaceAll('"','""')}"`;}
+    function exportReport(index){const period=filteredPeriods[index],data=summary(period,activeFilters()),rows=[['Period','From','To','Accounts attended','Accounts in portfolio','Calls logged','Connected calls'],[period.label,period.start,period.end,data.attended,data.total,data.records.length,data.connected],[],['Date','Account ID','Client','Collector','Outcome','Notes'],...data.records.map(call=>[call.date,call.account,call.client,call.collector,call.outcome,call.notes])];const blob=new Blob([rows.map(row=>row.map(csvCell).join(',')).join('\n')],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download=`${period.id}-collection-report-${todayKey}.csv`;link.click();URL.revokeObjectURL(url);}
+    function render(){const filters=activeFilters();if(filters.from>filters.to){status.textContent='Choose a start date that is on or before the end date.';cards.innerHTML='';return;}filteredPeriods=periods;status.textContent=`${accounts.length} active accounts in the portfolio · attendance counts unique accounts with a call log.`;cards.innerHTML=periods.map((period,index)=>{const data=summary(period,filters),from=period.start>filters.from?period.start:filters.from,to=period.end<filters.to?period.end:filters.to;return `<article class="report-card" data-report-search="${safe((period.title+' '+period.label).toLowerCase())}"><div class="report-card-head"><span class="report-icon"><i class="fa-solid ${period.icon}"></i></span><span class="report-period">${safe(period.label)}</span></div><h3>${safe(period.title)}</h3><p>${safe(period.description)} · ${safe(from)} to ${safe(to)}</p><div class="report-number">${data.attended} <span class="text-base font-semibold text-slate-400">/ ${data.total}</span></div><div class="report-meta">accounts attended · ${data.records.length} calls logged</div><div class="report-meta mt-1">${data.connected} connected · ${data.collectors} collectors active</div><div class="report-actions"><button type="button" data-preview="${index}"><i class="fa-regular fa-eye mr-2"></i>Preview</button><button type="button" class="report-export" data-export="${index}"><i class="fa-solid fa-download mr-2"></i>Export</button></div></article>`;}).join('');filterSearch();}
+    function filterSearch(){const query=document.getElementById('reportSearch').value.trim().toLowerCase();cards.querySelectorAll('[data-report-search]').forEach(card=>card.hidden=!!query&&!card.dataset.reportSearch.includes(query));}
+    cards.addEventListener('click',event=>{const exportButton=event.target.closest('[data-export]'),previewButton=event.target.closest('[data-preview]');if(exportButton){exportReport(Number(exportButton.dataset.export));return;}if(!previewButton)return;const index=Number(previewButton.dataset.preview),period=filteredPeriods[index],records=summary(period,activeFilters()).records;document.getElementById('previewTitle').textContent=period.title;document.getElementById('previewSubtitle').textContent=`${records.length} call records · ${period.start} to ${period.end}`;document.getElementById('previewRows').innerHTML=records.map(call=>`<tr><td>${safe(call.date||'—')}</td><td><strong>${safe(call.client||'Client unavailable')}</strong><small class="mt-1 block text-slate-500">${safe(call.account||'')}</small></td><td>${safe(call.collector||'Unassigned')}</td><td>${safe(call.outcome||'Call logged')}</td><td>${safe(call.notes||'—')}</td></tr>`).join('');document.getElementById('previewEmpty').hidden=records.length>0;preview.hidden=false;preview.scrollIntoView({behavior:'smooth',block:'start'});});
+    document.getElementById('applyReportFilters').addEventListener('click',()=>{preview.hidden=true;render();});
+    document.getElementById('closePreview').addEventListener('click',()=>preview.hidden=true);
+    document.getElementById('reportSearch').addEventListener('input',filterSearch);
+    render();
+})();
+</script>
+</body>
+</html>
